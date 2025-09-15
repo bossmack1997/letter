@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Letter</title>
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f9d423 0%, #ff4e50 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        .letter-container {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            padding: 2rem 1.5rem;
+            max-width: 400px;
+            width: 90vw;
+            text-align: center;
+        }
+        .letter-container h1 {
+            color: #ff4e50;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+        .letter-container p {
+            color: #333;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        .signature {
+            margin-top: 2rem;
+            color: #f9d423;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        @media (max-width: 500px) {
+            .letter-container {
+                padding: 1.2rem 0.5rem;
+                font-size: 1rem;
+            }
+            .letter-container h1 {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Heart Beat Animation */
+        .heart {
+            display: inline-block;
+            animation: heartbeat 1s infinite;
+            font-size: 2em;
+            color: #ff4e50;
+            vertical-align: middle;
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1);}
+            10%, 30% { transform: scale(1.2);}
+            20%, 40% { transform: scale(0.95);}
+            50% { transform: scale(1.1);}
+            60%, 80% { transform: scale(1);}
+        }
+
+        /* Floating Hearts Animation */
+        .floating-hearts {
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .floating-hearts span {
+            position: absolute;
+            bottom: 0;
+            font-size: 1.2em;
+            color: #ff4e50;
+            opacity: 0.7;
+            animation: floatUp 3s linear forwards;
+            pointer-events: none;
+            user-select: none;
+        }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1) rotate(0deg);
+                opacity: 0.7;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-180px) scale(1.5) rotate(20deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="letter-container">
+        <h1>My Love,</h1>
+        <p>
+            I just wanted to let you know how much you mean to me. Every moment spent with you is a treasure, and my heart is always happiest when you are near. Thank you for being my inspiration, my comfort, and my greatest joy. I love you more than words can say.
+        </p>
+        <div class="signature">
+            Yours forever,<br>
+            <span class="heart">&#10084;</span>
+        </div>
+        <div class="floating-hearts"></div>
+    </div>
+    <script>
+    // Floating hearts animation
+    function createHeart() {
+        const hearts = document.querySelector('.floating-hearts');
+        const heart = document.createElement('span');
+        heart.innerHTML = '❤';
+        heart.style.left = Math.random() * 90 + 5 + '%';
+        heart.style.fontSize = (Math.random() * 1.5 + 1) + 'em';
+        heart.style.animationDuration = (Math.random() * 1 + 2) + 's';
+        hearts.appendChild(heart);
+        setTimeout(() => heart.remove(), 3000);
+    }
+    setInterval(createHeart, 700);
+    </script>
+</body>
+</html>
